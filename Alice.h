@@ -25,6 +25,8 @@ public:
 	{
 		key = (int)pow(B, a);
 		key %= m_p;
+		key &= 0xFF;
+		key |= 0x80;
 	}
 
 	friend class DiffieHellman;

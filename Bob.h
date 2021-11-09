@@ -16,16 +16,18 @@ public:
 		while(!vec[i])
 			i = rand() % size;
 		b = i;
-		B = (int)pow(m_g, B) % m_p;
+		B = (int)pow(m_g, b) % m_p;
 	}
 	void SendN(Person* other) override
 	{
-		other->A = this->A;
+		other->B = this->B;
 	}
 	void GenerateKey() override
 	{
 		key = (int)pow(A, b);
 		key %= m_p;
+		key &= 0xFF;
+		key |= 0x80;
 	}
 
 	friend class DiffieHellman;
